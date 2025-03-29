@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/transientvariable/support"
-	"github.com/transientvariable/validation"
-	"github.com/transientvariable/validation/constraint"
+	"github.com/transientvariable/schema-go/validation"
+	"github.com/transientvariable/schema-go/validation/constraint"
+	"github.com/transientvariable/support-go"
 
 	"github.com/google/uuid"
 )

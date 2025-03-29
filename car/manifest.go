@@ -14,8 +14,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/transientvariable/schema"
-	"github.com/transientvariable/support"
+	"github.com/transientvariable/schema-go"
+	"github.com/transientvariable/support-go"
 
 	json "github.com/json-iterator/go"
 )

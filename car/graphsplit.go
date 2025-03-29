@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/transientvariable/schema"
-	"github.com/transientvariable/support"
+	"github.com/transientvariable/schema-go"
+	"github.com/transientvariable/support-go"
 
 	"github.com/ipfs/go-cid"
 

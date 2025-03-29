@@ -29,7 +29,7 @@ Common schema definitions that define the _shape_ of various things.
 
 [source%nowrap,bash]
 ----
-❯ go get -u github.com/transientvariable/schema
+❯ go get -u github.com/transientvariable/schema-go
 ----
 
 == License

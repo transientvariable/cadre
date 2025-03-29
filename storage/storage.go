@@ -3,7 +3,7 @@ package storage
 import (
 	"fmt"
 
-	"github.com/transientvariable/schema"
+	"github.com/transientvariable/schema-go"
 
 	"github.com/minio/sha256-simd"
 )

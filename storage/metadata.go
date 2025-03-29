@@ -1,13 +1,14 @@
 package storage
 
 import (
-	"github.com/transientvariable/validation"
-	"github.com/transientvariable/validation/constraint"
 	"strings"
 
+	"github.com/transientvariable/schema-go"
+	"github.com/transientvariable/schema-go/validation"
+	"github.com/transientvariable/schema-go/validation/constraint"
+	"github.com/transientvariable/support-go"
+
 	json "github.com/json-iterator/go"
-	"github.com/transientvariable/schema"
-	"github.com/transientvariable/support"
 )
 
 const (

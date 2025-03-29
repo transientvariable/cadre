@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/transientvariable/support"
+	"github.com/transientvariable/support-go"
 
 	json "github.com/json-iterator/go"
 	gofs "io/fs"

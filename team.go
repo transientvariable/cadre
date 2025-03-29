@@ -3,7 +3,7 @@ package schema
 import (
 	"time"
 
-	"github.com/transientvariable/support"
+	"github.com/transientvariable/support-go"
 
 	"github.com/google/uuid"
 
