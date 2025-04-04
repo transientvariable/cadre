@@ -1,4 +1,4 @@
-package schema
+package cadre
 
 const (
 	// ZeroLengthMD5 defines the MD5 digest that is generated from zero-length content, e.g. md5.New().Write([]byte{}).

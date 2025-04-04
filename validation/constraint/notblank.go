@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/transientvariable/schema-go/validation"
+	"github.com/transientvariable/cadre/validation"
 )
 
 // NotBlank defines the properties required for asserting that a character sequence is not blank.

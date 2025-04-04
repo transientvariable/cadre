@@ -1,4 +1,4 @@
-package schema
+package cadre
 
 // Network represents metadata for a communication path over which a host or network event happens.
 type Network struct {

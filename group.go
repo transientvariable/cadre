@@ -1,4 +1,4 @@
-package schema
+package cadre
 
 // Group ...
 type Group struct {

@@ -4,7 +4,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/transientvariable/support-go"
+	"github.com/transientvariable/anchor"
 )
 
 // Result is a container for tracking constraint violations during the validation process.
@@ -100,7 +100,7 @@ func (r *Result) Keys() []string {
 }
 
 func (r *Result) String() string {
-	return string(support.ToJSONFormatted(r.violations))
+	return string(anchor.ToJSONFormatted(r.violations))
 }
 
 // Validate applies the provided validation constraints and returns a Result representing the results.

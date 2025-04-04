@@ -14,8 +14,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/transientvariable/schema-go"
-	"github.com/transientvariable/support-go"
+	"github.com/transientvariable/cadre"
+	"github.com/transientvariable/anchor"
 
 	json "github.com/json-iterator/go"
 )
@@ -207,7 +207,7 @@ func (m *Manifest) String() string {
 	if len(m.graphsplit.Entries) > 0 {
 		pm["graphsplit"] = m.graphsplit
 	}
-	return string(support.ToJSONFormatted(pm))
+	return string(anchor.ToJSONFormatted(pm))
 }
 
 func (m *Manifest) copyEntry(e *schema.File) (*schema.File, error) {
@@ -307,7 +307,7 @@ func readMetadata(dir string) (*Metadata, error) {
 
 	var metadata *Metadata
 	if m, ok := mm["metadata"]; ok {
-		if err := json.NewDecoder(bytes.NewReader(support.ToJSON(m))).Decode(&metadata); err != nil {
+		if err := json.NewDecoder(bytes.NewReader(anchor.ToJSON(m))).Decode(&metadata); err != nil {
 			return nil, err
 		}
 	} else {

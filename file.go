@@ -1,4 +1,4 @@
-package schema
+package cadre
 
 import (
 	"bytes"
@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/transientvariable/support-go"
+	"github.com/transientvariable/anchor"
 
 	json "github.com/json-iterator/go"
 	gofs "io/fs"
@@ -96,7 +96,7 @@ func (f *File) IsDir() bool {
 // ToMap converts the File fields and their values to a map.
 func (f *File) ToMap() (map[string]any, error) {
 	var fm map[string]any
-	if err := json.Unmarshal(support.ToJSON(f), &fm); err != nil {
+	if err := json.Unmarshal(anchor.ToJSON(f), &fm); err != nil {
 		return nil, err
 	}
 	return fm, nil

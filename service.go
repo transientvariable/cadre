@@ -1,4 +1,4 @@
-package schema
+package cadre
 
 // Service fields for describing the service for or from which the data was collected.
 type Service struct {

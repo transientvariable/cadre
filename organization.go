@@ -1,13 +1,13 @@
-package schema
+package cadre
 
 import (
 	"database/sql"
 	"fmt"
 	"time"
 
-	"github.com/transientvariable/schema-go/validation"
-	"github.com/transientvariable/schema-go/validation/constraint"
-	"github.com/transientvariable/support-go"
+	"github.com/transientvariable/anchor"
+	"github.com/transientvariable/cadre/validation"
+	"github.com/transientvariable/cadre/validation/constraint"
 
 	"github.com/google/uuid"
 )
@@ -30,7 +30,7 @@ func (o *Organization) Validate(result *validation.Result) {
 		validators = append(validators, constraint.Pattern{
 			Name:    "Storage filePath",
 			Field:   sp,
-			Expr:    support.StoragePathPattern.String(),
+			Expr:    anchor.StoragePathPattern.String(),
 			Message: fmt.Sprintf("invalid format for storage path: %s", sp),
 		})
 	}
@@ -42,7 +42,7 @@ func (o *Organization) Validate(result *validation.Result) {
 
 // String returns a string representation of the Organization.
 func (o *Organization) String() string {
-	return string(support.ToJSONFormatted(o))
+	return string(anchor.ToJSONFormatted(o))
 }
 
 // OrganizationUser ...
@@ -54,5 +54,5 @@ type OrganizationUser struct {
 
 // String returns a string representation of the OrganizationUser.
 func (o *OrganizationUser) String() string {
-	return string(support.ToJSONFormatted(o))
+	return string(anchor.ToJSONFormatted(o))
 }

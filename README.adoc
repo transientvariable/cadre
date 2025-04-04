@@ -1,4 +1,4 @@
-= schema
+= cadre
 Matt Nicholls <transientvariable@protonmail.com>
 :keywords: golang,schema
 :experimental: true
@@ -30,7 +30,7 @@ Common schema definitions that define the _shape_ of various things.
 
 [source%nowrap,bash]
 ----
-❯ go get -u github.com/transientvariable/schema-go
+❯ go get -u github.com/transientvariable/cadre
 ----
 
 == License

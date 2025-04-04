@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/transientvariable/schema-go/validation"
+	"github.com/transientvariable/cadre/validation"
 )
 
 // Pattern defines the properties required for performing regular expression matches.

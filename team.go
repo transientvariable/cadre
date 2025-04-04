@@ -1,9 +1,9 @@
-package schema
+package cadre
 
 import (
 	"time"
 
-	"github.com/transientvariable/support-go"
+	"github.com/transientvariable/anchor"
 
 	"github.com/google/uuid"
 
@@ -22,7 +22,7 @@ type Team struct {
 // ToMap converts the Team fields and their values to a map.
 func (t *Team) ToMap() (map[string]any, error) {
 	var m map[string]any
-	err := json.Unmarshal(support.ToJSON(t), &m)
+	err := json.Unmarshal(anchor.ToJSON(t), &m)
 	if err != nil {
 		return nil, err
 	}
@@ -31,7 +31,7 @@ func (t *Team) ToMap() (map[string]any, error) {
 
 // String returns a human-readable string representation of the Team.
 func (t *Team) String() string {
-	return string(support.ToJSONFormatted(t))
+	return string(anchor.ToJSONFormatted(t))
 }
 
 // TeamUser defines the attributes for a single mapping of a User to a Team.
@@ -46,7 +46,7 @@ type TeamUser struct {
 // ToMap converts the TeamUser fields and their values to a map.
 func (t *TeamUser) ToMap() (map[string]any, error) {
 	var m map[string]any
-	err := json.Unmarshal(support.ToJSON(t), &m)
+	err := json.Unmarshal(anchor.ToJSON(t), &m)
 	if err != nil {
 		return nil, err
 	}
@@ -55,5 +55,5 @@ func (t *TeamUser) ToMap() (map[string]any, error) {
 
 // String returns a human-readable string representation of the TeamUser mapping.
 func (t *TeamUser) String() string {
-	return string(support.ToJSONFormatted(t))
+	return string(anchor.ToJSONFormatted(t))
 }

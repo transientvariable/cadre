@@ -3,12 +3,12 @@ package storage
 import (
 	"fmt"
 
-	"github.com/transientvariable/schema-go"
+	"github.com/transientvariable/cadre"
 
 	"github.com/minio/sha256-simd"
 )
 
-func fileID(file *schema.File) string {
+func fileID(file *cadre.File) string {
 	if file == nil || file.Path == "" {
 		return ""
 	}

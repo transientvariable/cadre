@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/transientvariable/schema-go"
-	"github.com/transientvariable/support-go"
+	"github.com/transientvariable/anchor"
+	"github.com/transientvariable/cadre"
 
 	"github.com/ipfs/go-cid"
 
@@ -18,8 +18,8 @@ import (
 )
 
 const (
-	tokenBufferSize = support.MiB
-	tokenSizeMax    = 10 * support.MiB
+	tokenBufferSize = anchor.MiB
+	tokenSizeMax    = 10 * anchor.MiB
 
 	GraphsplitManifestFileName = "manifest.csv"
 )
@@ -45,11 +45,11 @@ func (e GraphsplitManifestEntry) ToMap() (map[string]any, error) {
 }
 
 func (e GraphsplitManifestEntry) String() string {
-	return string(support.ToJSONFormatted(e))
+	return string(anchor.ToJSONFormatted(e))
 }
 
 type GraphsplitManifest struct {
-	File    schema.File
+	File    cadre.File
 	Entries []GraphsplitManifestEntry
 }
 
@@ -61,7 +61,7 @@ func NewGraphsplitManifest(path string) (GraphsplitManifest, error) {
 		return GraphsplitManifest{}, err
 	}
 
-	manifestFile := schema.File{Path: path}
+	manifestFile := cadre.File{Path: path}
 	if mp.IsDir() {
 		manifestFile.Directory = path
 		manifestFile.Name = GraphsplitManifestFileName
@@ -141,5 +141,5 @@ func readEntries(file *os.File) ([]GraphsplitManifestEntry, error) {
 }
 
 func (m GraphsplitManifest) String() string {
-	return string(support.ToJSONFormatted(m))
+	return string(anchor.ToJSONFormatted(m))
 }

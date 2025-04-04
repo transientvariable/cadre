@@ -3,10 +3,10 @@ package storage
 import (
 	"strings"
 
-	"github.com/transientvariable/schema-go"
-	"github.com/transientvariable/schema-go/validation"
-	"github.com/transientvariable/schema-go/validation/constraint"
-	"github.com/transientvariable/support-go"
+	"github.com/transientvariable/anchor"
+	"github.com/transientvariable/cadre"
+	"github.com/transientvariable/cadre/validation"
+	"github.com/transientvariable/cadre/validation/constraint"
 
 	json "github.com/json-iterator/go"
 )
@@ -19,15 +19,15 @@ const (
 
 // Metadata ...
 type Metadata struct {
-	schema.Base
-	File *schema.File `json:"file,omitempty"`
+	cadre.Base
+	File *cadre.File `json:"file,omitempty"`
 
 	id        string
 	namespace string
 }
 
 // NewMetadata ...
-func NewMetadata(namespace string, file *schema.File) (*Metadata, error) {
+func NewMetadata(namespace string, file *cadre.File) (*Metadata, error) {
 	metadata := &Metadata{
 		File:      file,
 		id:        fileID(file),
@@ -56,7 +56,7 @@ func (m *Metadata) Namespace() string {
 // ToMap converts the Metadata fields and their values to a map.
 func (m *Metadata) ToMap() (map[string]any, error) {
 	var mm map[string]any
-	err := json.Unmarshal(support.ToJSON(m), &mm)
+	err := json.Unmarshal(anchor.ToJSON(m), &mm)
 	if err != nil {
 		return nil, err
 	}
@@ -69,7 +69,7 @@ func (m *Metadata) String() string {
 	mm["id"] = m.id
 	mm["metadata"] = m
 	mm["namespace"] = m.namespace
-	return string(support.ToJSONFormatted(mm))
+	return string(anchor.ToJSONFormatted(mm))
 }
 
 // validate performs validation of a storage Metadata.

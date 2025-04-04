@@ -3,10 +3,10 @@ package storage
 import (
 	"time"
 
-	"github.com/transientvariable/schema-go"
-	"github.com/transientvariable/schema-go/validation"
-	"github.com/transientvariable/schema-go/validation/constraint"
-	"github.com/transientvariable/support-go"
+	"github.com/transientvariable/anchor"
+	"github.com/transientvariable/cadre"
+	"github.com/transientvariable/cadre/validation"
+	"github.com/transientvariable/cadre/validation/constraint"
 )
 
 const (
@@ -15,9 +15,9 @@ const (
 
 // Event ...
 type Event struct {
-	schema.Base
-	Event *schema.Event `json:"event,omitempty"`
-	File  *schema.File  `json:"file,omitempty"`
+	cadre.Base
+	Event *cadre.Event `json:"event,omitempty"`
+	File  *cadre.File  `json:"file,omitempty"`
 
 	id        string
 	eventType string
@@ -25,14 +25,14 @@ type Event struct {
 }
 
 // NewStorageEvent ...
-func NewStorageEvent(eventType string, namespace string, file *schema.File) (*Event, error) {
+func NewStorageEvent(eventType string, namespace string, file *cadre.File) (*Event, error) {
 	created := time.Now().UTC()
 	event := &Event{
-		Event: &schema.Event{
+		Event: &cadre.Event{
 			ID:       fileID(file),
 			Created:  &created,
-			Kind:     schema.EventKindEvent,
-			Category: []string{schema.EventCategoryFile},
+			Kind:     cadre.EventKindEvent,
+			Category: []string{cadre.EventCategoryFile},
 			Type:     []string{eventType},
 		},
 		File:      file,
@@ -45,7 +45,7 @@ func NewStorageEvent(eventType string, namespace string, file *schema.File) (*Ev
 	}
 
 	event.Timestamp = file.Ctime
-	if eventType == schema.EventTypeCreation {
+	if eventType == cadre.EventTypeCreation {
 		event.File.Created = file.Ctime
 	}
 
@@ -70,7 +70,7 @@ func (e *Event) String() string {
 	em["id"] = e.id
 	em["type"] = e.eventType
 	em["namespace"] = e.namespace
-	return string(support.ToJSONFormatted(em))
+	return string(anchor.ToJSONFormatted(em))
 }
 
 // validate performs validation of a storage Event.
@@ -94,7 +94,7 @@ func (e *Event) validate() *validation.Result {
 		}
 	}))
 
-	if (e.eventType == schema.EventTypeCreation && !e.File.IsDir()) || e.eventType == schema.EventTypeChange {
+	if (e.eventType == cadre.EventTypeCreation && !e.File.IsDir()) || e.eventType == cadre.EventTypeChange {
 		validators = append(validators, constraint.NotBlank{
 			Name:    "eventID",
 			Field:   e.Event.ID,

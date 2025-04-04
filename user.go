@@ -1,13 +1,13 @@
-package schema
+package cadre
 
 import (
 	"database/sql"
 	"fmt"
 	"time"
 
-	"github.com/transientvariable/schema-go/validation"
-	"github.com/transientvariable/schema-go/validation/constraint"
-	"github.com/transientvariable/support-go"
+	"github.com/transientvariable/anchor"
+	"github.com/transientvariable/cadre/validation"
+	"github.com/transientvariable/cadre/validation/constraint"
 
 	"github.com/google/uuid"
 
@@ -30,7 +30,7 @@ type User struct {
 // ToMap converts the User fields and their values to a map.
 func (u *User) ToMap() (map[string]any, error) {
 	var m map[string]any
-	err := json.Unmarshal(support.ToJSON(u), &m)
+	err := json.Unmarshal(anchor.ToJSON(u), &m)
 	if err != nil {
 		return nil, err
 	}
@@ -43,7 +43,7 @@ func (u *User) Validate(result *validation.Result) {
 	validators = append(validators, constraint.Pattern{
 		Name:    "email",
 		Field:   u.Email,
-		Expr:    support.EmailPattern.String(),
+		Expr:    anchor.EmailPattern.String(),
 		Message: fmt.Sprintf("invalid format: %s", u.Email),
 	})
 
@@ -54,5 +54,5 @@ func (u *User) Validate(result *validation.Result) {
 
 // String returns a human-readable string representation of the User.
 func (u *User) String() string {
-	return string(support.ToJSONFormatted(u))
+	return string(anchor.ToJSONFormatted(u))
 }
