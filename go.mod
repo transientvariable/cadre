@@ -22,6 +22,7 @@ require (
 	github.com/multiformats/go-multihash v0.2.3 // indirect
 	github.com/multiformats/go-varint v0.0.7 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
+	github.com/stretchr/testify v1.10.0 // indirect
 	golang.org/x/crypto v0.36.0 // indirect
 	golang.org/x/sys v0.31.0 // indirect
 	lukechampine.com/blake3 v1.4.0 // indirect

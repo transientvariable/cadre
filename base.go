@@ -7,7 +7,7 @@ import (
 // Base represents the common properties shared between composite data types. For example, for a composite type named
 // `FooEvent` that represents some arbitrary event, Base would be used as follows:
 //
-//	   import "github.com/transientvariable/schema/ecs"
+//	   import "github.com/transientvariable/cadre/ecs"
 //
 //		  type FooEvent struct {
 //	       ecs.Base

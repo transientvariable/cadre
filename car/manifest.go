@@ -14,8 +14,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/transientvariable/cadre"
 	"github.com/transientvariable/anchor"
+	"github.com/transientvariable/cadre"
 
 	json "github.com/json-iterator/go"
 )
@@ -34,7 +34,7 @@ type Metadata struct {
 }
 
 type Manifest struct {
-	entries     []*schema.File
+	entries     []*cadre.File
 	entriesPath string
 	graphsplit  GraphsplitManifest
 	metadata    *Metadata
@@ -51,7 +51,7 @@ func NewManifest(namespace string, index uint) *Manifest {
 	}
 }
 
-func (m *Manifest) Add(entries ...*schema.File) {
+func (m *Manifest) Add(entries ...*cadre.File) {
 	for _, entry := range entries {
 		m.entries = append(m.entries, entry)
 		m.metadata.Size += entry.Size
@@ -94,7 +94,7 @@ func (m *Manifest) Path() string {
 	return m.path
 }
 
-func (m *Manifest) ReadAllEntries() ([]*schema.File, error) {
+func (m *Manifest) ReadAllEntries() ([]*cadre.File, error) {
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
 
@@ -116,8 +116,8 @@ func (m *Manifest) ReadAllEntries() ([]*schema.File, error) {
 	return m.entries, nil
 }
 
-func (m *Manifest) ReadEntries(ctx context.Context) (<-chan *schema.File, error) {
-	entries := make(chan *schema.File)
+func (m *Manifest) ReadEntries(ctx context.Context) (<-chan *cadre.File, error) {
+	entries := make(chan *cadre.File)
 	go func() {
 		defer close(entries)
 
@@ -154,11 +154,11 @@ func (m *Manifest) ReadEntries(ctx context.Context) (<-chan *schema.File, error)
 			}
 
 			select {
-			case entries <- &schema.File{
+			case entries <- &cadre.File{
 				Name:  attrs[0],
 				Path:  attrs[1],
 				Size:  size,
-				Hash:  &schema.Hash{Sha256: attrs[3]},
+				Hash:  &cadre.Hash{Sha256: attrs[3]},
 				Mtime: &mtime,
 			}:
 			case <-ctx.Done():
@@ -210,13 +210,13 @@ func (m *Manifest) String() string {
 	return string(anchor.ToJSONFormatted(pm))
 }
 
-func (m *Manifest) copyEntry(e *schema.File) (*schema.File, error) {
+func (m *Manifest) copyEntry(e *cadre.File) (*cadre.File, error) {
 	c, err := json.Marshal(e)
 	if err != nil {
 		return nil, err
 	}
 
-	var entry *schema.File
+	var entry *cadre.File
 	if err := json.NewDecoder(bytes.NewReader(c)).Decode(&entry); err != nil {
 		return nil, err
 	}
