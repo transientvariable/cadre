@@ -17,7 +17,7 @@ type Organization struct {
 	Active       bool           `json:"active"`
 	Created      *time.Time     `json:"created"`
 	BillingEmail sql.NullString `json:"billing_email,omitempty"`
-	ID           uuid.UUID      `json:"id" swaggerignore:"true"`
+	ID           uuid.UUID      `json:"id"`
 	Name         string         `json:"name,omitempty"`
 	StoragePath  []string       `json:"storage_path,omitempty"`
 	Updated      *time.Time     `json:"updated"`

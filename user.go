@@ -16,13 +16,13 @@ import (
 
 // User defines the properties for a user.
 type User struct {
-	Active        bool           `json:"active" swaggerignore:"true"`
+	Active        bool           `json:"active"`
 	Created       *time.Time     `json:"created"`
 	DisplayName   sql.NullString `json:"display_name,omitempty"`
 	Email         string         `json:"email"`
-	EmailVerified bool           `json:"email_verified" swaggerignore:"true"`
+	EmailVerified bool           `json:"email_verified"`
 	FullName      sql.NullString `json:"full_name,omitempty"`
-	ID            uuid.UUID      `json:"id" swaggerignore:"true"`
+	ID            uuid.UUID      `json:"id"`
 	LastLogin     *time.Time     `json:"last_login,omitempty"`
 	Updated       *time.Time     `json:"updated"`
 }

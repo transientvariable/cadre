@@ -1,4 +1,4 @@
-package cadre
+package ecs
 
 import (
 	"time"

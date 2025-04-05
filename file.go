@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/transientvariable/anchor"
+	"github.com/transientvariable/cadre/ecs"
 
 	json "github.com/json-iterator/go"
 	gofs "io/fs"
@@ -17,27 +18,27 @@ import (
 // File godoc
 // @Description Represents metadata for a file/object on a local/remote file system or storage service.
 type File struct {
-	Accessed   *time.Time `json:"accessed,omitempty" swaggerignore:"true"`
-	Attributes []string   `json:"attributes,omitempty" swaggerignore:"true"`
+	Accessed   *time.Time `json:"accessed,omitempty"`
+	Attributes []string   `json:"attributes,omitempty"`
 	CID        string     `json:"cid,omitempty"`
 	Ctime      *time.Time `json:"ctime,omitempty"`
 	Created    *time.Time `json:"created,omitempty"`
 	Directory  string     `json:"directory,omitempty"`
-	Extension  string     `json:"extension,omitempty" swaggerignore:"true"`
-	GID        string     `json:"gid,omitempty" swaggerignore:"true"`
-	Group      string     `json:"group,omitempty" swaggerignore:"true"`
-	Hash       *Hash      `json:"hash,omitempty"`
-	Inode      string     `json:"inode,omitempty" swaggerignore:"true"`
+	Extension  string     `json:"extension,omitempty"`
+	GID        string     `json:"gid,omitempty"`
+	Group      string     `json:"group,omitempty"`
+	Hash       *ecs.Hash  `json:"hash,omitempty"`
+	Inode      string     `json:"inode,omitempty"`
 	MimeType   string     `json:"mime_type,omitempty"`
-	Mode       string     `json:"mode,omitempty" swaggerignore:"true"`
+	Mode       string     `json:"mode,omitempty"`
 	Mtime      *time.Time `json:"mtime,omitempty"`
 	Name       string     `json:"name,omitempty"`
-	Owner      string     `json:"owner,omitempty" swaggerignore:"true"`
+	Owner      string     `json:"owner,omitempty"`
 	Path       string     `json:"path,omitempty"`
 	Size       int64      `json:"size,omitempty"`
 	Type       string     `json:"type,omitempty"`
-	UID        string     `json:"uid,omitempty" swaggerignore:"true"`
-	URL        string     `json:"url,omitempty" swaggerignore:"true"`
+	UID        string     `json:"uid,omitempty"`
+	URL        string     `json:"url,omitempty"`
 
 	content []byte
 } // @name File

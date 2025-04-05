@@ -1,4 +1,4 @@
-package cadre
+package ecs
 
 // Log defines attributes for representing details about a logging mechanism or transport.
 type Log struct {
