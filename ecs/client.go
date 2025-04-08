@@ -1,15 +1,5 @@
 package ecs
 
-type ClientNAT struct {
-	// IP is the IP of the source based NAT sessions (e.g. internal Client to internet), typically connections
-	// traversing load balancers, firewalls, or routers.
-	IP string `json:"ip,omitempty"`
-
-	// Port is the port of source based NAT sessions (e.g. internal Client to internet), typically connections
-	// traversing load balancers, firewalls, or routers.
-	Port int `json:"port,omitempty"`
-}
-
 // Client defines the properties for an initiator of a network connection event.
 //
 // For TCP events, the Client is the initiator of the TCP connection that sends the SYN packet(s). For other protocols,
@@ -43,7 +33,7 @@ type Client struct {
 	// separated by a hyphen.
 	MAC string `json:"mac,omitempty"`
 
-	NAT *ClientNAT `json:"nat,omitempty"`
+	NAT *NAT `json:"nat,omitempty"`
 
 	// Packets sent from the Client to the server.
 	Packets int64 `json:"packets,omitempty"`
