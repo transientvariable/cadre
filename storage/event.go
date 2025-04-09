@@ -5,6 +5,7 @@ import (
 
 	"github.com/transientvariable/anchor"
 	"github.com/transientvariable/cadre"
+	"github.com/transientvariable/cadre/ecs"
 	"github.com/transientvariable/cadre/validation"
 	"github.com/transientvariable/cadre/validation/constraint"
 )
@@ -15,9 +16,9 @@ const (
 
 // Event ...
 type Event struct {
-	cadre.Base
-	Event *cadre.Event `json:"event,omitempty"`
-	File  *cadre.File  `json:"file,omitempty"`
+	ecs.Base
+	Event *ecs.Event  `json:"event,omitempty"`
+	File  *cadre.File `json:"file,omitempty"`
 
 	id        string
 	eventType string
@@ -28,11 +29,11 @@ type Event struct {
 func NewStorageEvent(eventType string, namespace string, file *cadre.File) (*Event, error) {
 	created := time.Now().UTC()
 	event := &Event{
-		Event: &cadre.Event{
+		Event: &ecs.Event{
 			ID:       fileID(file),
 			Created:  &created,
-			Kind:     cadre.EventKindEvent,
-			Category: []string{cadre.EventCategoryFile},
+			Kind:     ecs.EventKindEvent,
+			Category: []string{ecs.EventCategoryFile},
 			Type:     []string{eventType},
 		},
 		File:      file,
@@ -45,7 +46,7 @@ func NewStorageEvent(eventType string, namespace string, file *cadre.File) (*Eve
 	}
 
 	event.Timestamp = file.Ctime
-	if eventType == cadre.EventTypeCreation {
+	if eventType == ecs.EventTypeCreation {
 		event.File.Created = file.Ctime
 	}
 
@@ -94,7 +95,7 @@ func (e *Event) validate() *validation.Result {
 		}
 	}))
 
-	if (e.eventType == cadre.EventTypeCreation && !e.File.IsDir()) || e.eventType == cadre.EventTypeChange {
+	if (e.eventType == ecs.EventTypeCreation && !e.File.IsDir()) || e.eventType == ecs.EventTypeChange {
 		validators = append(validators, constraint.NotBlank{
 			Name:    "eventID",
 			Field:   e.Event.ID,

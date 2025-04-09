@@ -1,6 +1,7 @@
 package storage
 
 import (
+	"github.com/transientvariable/cadre/ecs"
 	"strings"
 
 	"github.com/transientvariable/anchor"
@@ -19,7 +20,7 @@ const (
 
 // Metadata ...
 type Metadata struct {
-	cadre.Base
+	ecs.Base
 	File *cadre.File `json:"file,omitempty"`
 
 	id        string
